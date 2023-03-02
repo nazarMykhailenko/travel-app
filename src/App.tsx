@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { BrowsePage } from './pages/BrowsePage'
-import { Header } from './components/Header'
-import { Navigation } from './components/Navigation'
+import { Header } from './components/layout/Header'
+import { Navigation } from './components/layout/Navigation'
 import './App.scss'
 
 const App: React.FC = () => {

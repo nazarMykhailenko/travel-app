@@ -9,10 +9,11 @@ import {
 	FaSignOutAlt,
 } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
+import { Button } from '../common/Button'
 
 export const Navigation: React.FC = () => {
 	return (
-		<div className='w-1/6 p-10'>
+		<div className='w-1/6 p-10 border-r'>
 			<h1 className='text-[2.5rem] font-bold mb-8'>Travels</h1>
 			<div>
 				<div className='mb-8'>
@@ -123,9 +124,9 @@ export const Navigation: React.FC = () => {
 						<span className='text-[#EF943D]'> remove </span>
 						ads
 					</p>
-					<button className='bg-[#92B7C4] w-full py-2 rounded-2xl text-white font-bold text-sm'>
+					<Button otherStyles='w-full text-white font-bold text-sm'>
 						Upgrade
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>
