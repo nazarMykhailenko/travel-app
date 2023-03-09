@@ -3,6 +3,7 @@ import React from 'react'
 interface IButtonProps {
 	children: string
 	transparent?: boolean
+	dark?: boolean
 	onClick?: () => {}
 	otherStyles?: string
 }
@@ -12,6 +13,7 @@ export const Button: React.FC<IButtonProps> = ({
 	transparent,
 	onClick,
 	otherStyles,
+	dark,
 }) => {
 	return (
 		<button
@@ -20,7 +22,9 @@ export const Button: React.FC<IButtonProps> = ({
 				transparent
 					? `border-2 border-[#92B7C4] text-[#92B7C4] hover:border-[#89C5F6] hover:text-[#89C5F6]`
 					: `bg-[#92B7C4] hover:bg-[#89C5F6] text-white border border-transparent`
-			} ${otherStyles ? otherStyles : ``}`}
+			} ${otherStyles ? otherStyles : ``} ${
+				dark ? `bg-[#46626B] hover:bg-[#6e93b0]` : ``
+			}`}
 		>
 			{children}
 		</button>
