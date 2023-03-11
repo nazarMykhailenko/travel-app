@@ -31,7 +31,7 @@ export const Notifications: React.FC = () => {
 		},
 	]
 	return (
-		<div className='w-1/4 pl-10'>
+		<div className='w-1/4'>
 			<h2 className='font-bold text-lg mb-5'>Notifications</h2>
 			<div>
 				{list.map((item) => (

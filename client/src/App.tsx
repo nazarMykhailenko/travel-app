@@ -16,7 +16,7 @@ const App: React.FC = () => {
 	return (
 		<div className='wrapper'>
 			<Navigation />
-			<div className='page'>
+			<div className='page pl-[16.66666%]'>
 				<Header text={pageName} />
 				<div className='content'>
 					<Routes>

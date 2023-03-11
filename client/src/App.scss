@@ -1,0 +1,57 @@
+body {
+	font-family: 'Quicksand';
+	color: #59626f;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapper {
+	overflow-y: auto;
+	background: #ffffff;
+	border-radius: 16px;
+
+	.page {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+}
+
+/* For Firefox */
+::-moz-scrollbar {
+	width: 10px;
+	background-color: #ffffff;
+}
+
+::-moz-scrollbar-thumb {
+	background-color: #92b7c4;
+	border-radius: 5px;
+}
+
+/* For Webkit */
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #92b7c4;
+	border-radius: 5px;
+}
+
+/* For IE and Edge */
+scrollbar {
+	width: 10px;
+	background-color: #ffffff;
+}
+
+scrollbar-thumb {
+	background-color: #92b7c4;
+	border-radius: 5px;
+}
+
+/* For other browsers */
+* {
+	scrollbar-color: #92b7c4 #ffffff;
+	scrollbar-width: thin;
+}

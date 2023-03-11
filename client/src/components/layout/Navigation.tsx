@@ -13,7 +13,7 @@ import { Button } from '../common/Button'
 
 export const Navigation: React.FC = () => {
 	return (
-		<div className='w-1/6 p-10 border-r'>
+		<div className='w-1/6 p-10 border-r fixed top-0 left-0 bottom-0'>
 			<h1 className='text-[2.5rem] font-bold mb-8'>Travels</h1>
 			<div>
 				<div className='mb-8'>
