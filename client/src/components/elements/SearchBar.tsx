@@ -19,7 +19,7 @@ export const SearchBar: React.FC = () => {
 	}
 
 	return (
-		<div className='flex items-center px-4 py-3 border rounded-2xl overflow-hidden min-w-[17rem] mr-40'>
+		<div className='flex items-center px-4 py-3 border rounded-2xl overflow-hidden min-w-[17rem]'>
 			<div className='cursor-pointer' onClick={focusOnInput}>
 				<FaSearch className='text-md mr-4' />
 			</div>
