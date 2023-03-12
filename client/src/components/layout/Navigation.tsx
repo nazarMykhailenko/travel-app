@@ -9,9 +9,18 @@ import {
 	FaSignOutAlt,
 } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { logOut } from '../../redux/user/slice'
 import { Button } from '../common/Button'
 
 export const Navigation: React.FC = () => {
+	const dispatch = useAppDispatch()
+	const { user } = useAppSelector((state) => state.user)
+
+	const logOutUser = () => {
+		dispatch(logOut())
+	}
+
 	return (
 		<div className='w-1/6 p-10 border-r fixed top-0 left-0 bottom-0'>
 			<h1 className='text-[2.5rem] font-bold mb-8'>Travels</h1>
@@ -90,31 +99,39 @@ export const Navigation: React.FC = () => {
 				<div className='mb-8'>
 					<h2 className='text-2xl font-light mb-6'>Secondary</h2>
 					<ul className='flex flex-col space-y-4'>
+						{user ? (
+							<li>
+								<NavLink
+									className={({ isActive }) =>
+										isActive
+											? 'text-[#EF943D] flex items-center'
+											: 'hover:text-[#EF943D] flex items-center'
+									}
+									to='/settings'
+								>
+									<FaCog className='mr-4 text-md' />
+									Settings
+								</NavLink>
+							</li>
+						) : (
+							''
+						)}
 						<li>
-							<NavLink
-								className={({ isActive }) =>
-									isActive
-										? 'text-[#EF943D] flex items-center'
-										: 'hover:text-[#EF943D] flex items-center'
-								}
-								to='/settings'
-							>
-								<FaCog className='mr-4 text-md' />
-								Settings
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								className={({ isActive }) =>
-									isActive
-										? 'text-[#EF943D] flex items-center'
-										: 'hover:text-[#EF943D] flex items-center'
-								}
-								to='/log-out'
-							>
-								<FaSignOutAlt className='mr-4 text-md' />
-								Log out
-							</NavLink>
+							{user ? (
+								<NavLink
+									onClick={logOutUser}
+									className='flex items-center'
+									to=''
+								>
+									<FaSignOutAlt className='mr-4 text-md' />
+									Log out
+								</NavLink>
+							) : (
+								<NavLink className='flex items-center' to='/log-in'>
+									<FaSignOutAlt className='mr-4 text-md' />
+									Log in
+								</NavLink>
+							)}
 						</li>
 					</ul>
 				</div>

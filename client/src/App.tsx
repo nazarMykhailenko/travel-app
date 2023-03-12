@@ -1,29 +1,24 @@
 import React from 'react'
+import { MainLayout } from './layout/MainLayout'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { RegistrationPage } from './pages/RegistrationPage'
 import { BrowsePage } from './pages/BrowsePage'
-import { Header } from './components/layout/Header'
-import { Navigation } from './components/layout/Navigation'
+import { SavedPlace } from './pages/SavedPlace'
 import './App.scss'
 
 const App: React.FC = () => {
-	const { pathname } = useLocation()
-	const pageName =
-		pathname !== `/`
-			? pathname.slice(1).replace(`-`, ` `)[0].toUpperCase() +
-			  pathname.slice(1).replace(`-`, ` `).slice(1)
-			: `Browse`
-
 	return (
 		<div className='wrapper'>
-			<Navigation />
-			<div className='page pl-[16.66666%]'>
-				<Header text={pageName} />
-				<div className='content'>
-					<Routes>
+			<Routes>
+				<Route path='/' element={<MainLayout />}>
+					<Route path='/' element={<HomePage />}>
 						<Route path='/' element={<BrowsePage />} />
-					</Routes>
-				</div>
-			</div>
+						<Route path='/saved-place' element={<SavedPlace />} />
+					</Route>
+					<Route path='/sign-up' element={<RegistrationPage />} />
+				</Route>
+			</Routes>
 		</div>
 	)
 }

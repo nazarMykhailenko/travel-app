@@ -4,7 +4,7 @@ interface IButtonProps {
 	children: string
 	transparent?: boolean
 	dark?: boolean
-	onClick?: () => {}
+	onClick?: () => void
 	otherStyles?: string
 }
 
