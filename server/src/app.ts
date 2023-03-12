@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 import { loginValidation, registerValidation } from './validation.js'
 import handleValidationErrors from './utils/handleValidationErrors.js'
-import { register } from './controllers/UserController.js'
+import { login, register } from './controllers/UserController.js'
 
 const url =
 	'mongodb+srv://nazarprogramming:2136nazarm@cluster0.kmokheh.mongodb.net/?retryWrites=true&w=majority'
@@ -23,7 +23,7 @@ app.get(`/`, (_, res) => {
 	res.send(`OK`)
 })
 
-// app.post('/auth/login', loginValidation, handleValidationErrors, login)
+app.post('/auth/login', loginValidation, handleValidationErrors, login)
 app.post('/auth/register', registerValidation, handleValidationErrors, register)
 
 const server = app.listen(4444, () => {

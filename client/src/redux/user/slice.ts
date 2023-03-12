@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios, { AxiosHeaders } from 'axios'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { IUser, IUserState, UserLoadingStatus } from './types'
+import { IUser, IUserState, UserLoadingStatus, ILogInDetails } from './types'
 
 export const registerUser = createAsyncThunk(
 	'user/registerUser',
@@ -21,6 +21,24 @@ export const registerUser = createAsyncThunk(
 	}
 )
 
+export const logInUser = createAsyncThunk(
+	'user/logInUser',
+	async (userInfo: ILogInDetails) => {
+		try {
+			const body = JSON.stringify(userInfo)
+			const headers = new AxiosHeaders({ 'Content-Type': 'application/json' })
+			const response = await axios.post<IUser>(
+				'http://localhost:4444/auth/login',
+				body,
+				{ headers }
+			)
+			return response.data
+		} catch (err) {
+			throw new Error(`Failed to log in: ${err}`)
+		}
+	}
+)
+
 const initialState: IUserState = {
 	status: UserLoadingStatus.LOADING,
 	user: null,
@@ -35,6 +53,7 @@ export const userSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		// register
 		builder.addCase(registerUser.pending, (state, action) => {
 			state.status = UserLoadingStatus.LOADING
 			state.user = null
@@ -47,6 +66,23 @@ export const userSlice = createSlice({
 			}
 		)
 		builder.addCase(registerUser.rejected, (state, action) => {
+			state.status = UserLoadingStatus.ERROR
+			state.user = null
+		})
+
+		// login
+		builder.addCase(logInUser.pending, (state, action) => {
+			state.status = UserLoadingStatus.LOADING
+			state.user = null
+		})
+		builder.addCase(
+			logInUser.fulfilled,
+			(state, action: PayloadAction<IUser>) => {
+				state.status = UserLoadingStatus.SUCCESS
+				state.user = action.payload
+			}
+		)
+		builder.addCase(logInUser.rejected, (state, action) => {
 			state.status = UserLoadingStatus.ERROR
 			state.user = null
 		})
