@@ -64,7 +64,7 @@ export const RegistrationPage: React.FC = () => {
 						}`}
 						type='email'
 						{...register('email', {
-							required: 'Name is require field!',
+							required: 'Email is require field!',
 						})}
 					/>
 					{errors.email && (
@@ -102,7 +102,17 @@ export const RegistrationPage: React.FC = () => {
 						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
 						type='submit'
 					>
-						Register
+						Sign up
+					</button>
+				</div>
+
+				<div className='mt-4 text-center'>
+					<p className='mb-1'>Already have an account?</p>
+					<button
+						className='text-blue-500 underline focus:outline-none'
+						onClick={() => navigate('/log-in')}
+					>
+						Log in
 					</button>
 				</div>
 			</form>

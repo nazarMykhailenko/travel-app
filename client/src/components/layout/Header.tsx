@@ -14,6 +14,10 @@ export const Header: React.FC<{ text: string }> = ({ text }) => {
 		navigate(`/sign-up`)
 	}
 
+	const showLogInPage = (): void => {
+		navigate(`/log-in`)
+	}
+
 	return (
 		<div className='w-full p-10 flex items-center space-x-10'>
 			<div className='w-3/4 flex justify-between'>
@@ -35,7 +39,9 @@ export const Header: React.FC<{ text: string }> = ({ text }) => {
 					</div>
 				) : (
 					<>
-						<Button transparent>Log in</Button>
+						<Button onClick={showLogInPage} transparent>
+							Log in
+						</Button>
 						<Button onClick={showRegistrationPage}>Sign up</Button>
 					</>
 				)}

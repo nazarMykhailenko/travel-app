@@ -1,9 +1,10 @@
 import React from 'react'
 import { MainLayout } from './layout/MainLayout'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { RegistrationPage } from './pages/RegistrationPage'
 import { BrowsePage } from './pages/BrowsePage'
+import { LogInPage } from './pages/LogInPage'
 import { SavedPlace } from './pages/SavedPlace'
 import './App.scss'
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
 						<Route path='/saved-place' element={<SavedPlace />} />
 					</Route>
 					<Route path='/sign-up' element={<RegistrationPage />} />
+					<Route path='/log-in' element={<LogInPage />} />
 				</Route>
 			</Routes>
 		</div>
