@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { RegistrationPage } from './pages/RegistrationPage'
 import { BrowsePage } from './pages/BrowsePage'
-import { LogInPage } from './pages/LogInPage'
+import { LogInPage } from './pages/LoginPage'
 import { SavedPlace } from './pages/SavedPlace'
 import './App.scss'
 

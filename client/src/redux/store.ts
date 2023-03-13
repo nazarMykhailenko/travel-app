@@ -12,8 +12,9 @@ import {
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux'
 import storage from 'redux-persist/lib/storage'
 import user from './user/slice'
+import destinations from './destinations/slice'
 
-const rootReducer = combineReducers({ user })
+const rootReducer = combineReducers({ user, destinations })
 
 const persistConfig = {
 	key: 'key2136',

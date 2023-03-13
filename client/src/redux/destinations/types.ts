@@ -1,36 +1,42 @@
-export interface IUser {
-	fullName: string
-	email: string
-	passwordHash: string
+export enum DestinationLoadingStatus {
+	LOADING = 'loading',
+	SUCCESS = 'success',
+	ERROR = 'error',
 }
 
-export interface ILocation {
+interface ILocation {
 	city: string
 	country: string
 }
 
-export interface IInfo {
+interface IInfo {
 	desc: string
 	sumUp: string
 	img: string
 }
 
-export interface ITickets {
+interface ITickets {
 	time: Date
 	price: number
 }
 
-export interface IHotel {
+interface IHotel {
 	name: string
 	img: string
 	city: string
 }
 
 export interface IDestination {
+	_id: string
 	location: ILocation
 	info: IInfo
 	tickets: ITickets
 	hotelsAvailable: Array<IHotel>
 	rating: string
 	isSaved: boolean
+}
+
+export interface IDestinationState {
+	status: DestinationLoadingStatus
+	destinations: Array<IDestination>
 }
