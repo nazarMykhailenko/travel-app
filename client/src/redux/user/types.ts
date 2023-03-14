@@ -1,8 +1,4 @@
-export enum UserLoadingStatus {
-	LOADING = 'loading',
-	SUCCESS = 'success',
-	ERROR = 'error',
-}
+import { Loading } from '../../@types/global'
 
 export interface ILogInDetails {
 	email: string
@@ -16,6 +12,6 @@ export interface IUser {
 }
 
 export interface IUserState {
-	status: UserLoadingStatus
+	status: Loading
 	user: IUser | null
 }
