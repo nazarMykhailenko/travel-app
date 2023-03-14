@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 import { loginValidation, registerValidation } from './validation.js'
 import handleValidationErrors from './utils/handleValidationErrors.js'
 import { login, register } from './controllers/UserController.js'
-import { getAll } from './controllers/DestinationsController.js'
+import { getAll, getOne } from './controllers/DestinationsController.js'
 
 const url =
 	'mongodb+srv://nazarprogramming:2136nazarm@cluster0.kmokheh.mongodb.net/?retryWrites=true&w=majority'
@@ -27,7 +27,8 @@ app.get('/', (_, res) => {
 app.post('/auth/login', loginValidation, handleValidationErrors, login)
 app.post('/auth/register', registerValidation, handleValidationErrors, register)
 
-app.get('/destinations', handleValidationErrors, getAll)
+app.get('/destinations', getAll)
+app.get('/destinations/:id', getOne)
 
 const server = app.listen(4444, () => {
 	console.log('Server OK')
