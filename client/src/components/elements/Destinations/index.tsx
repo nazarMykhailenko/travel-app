@@ -14,7 +14,7 @@ export const Destinations: React.FC = () => {
 	}, [])
 
 	return (
-		<div className='flex-grow w-3/4'>
+		<div>
 			<Categories />
 			<div className='flex space-x-4'>
 				{status === DestinationLoadingStatus.LOADING

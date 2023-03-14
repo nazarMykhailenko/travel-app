@@ -5,7 +5,7 @@ import { DestinationModel } from '../models/Destination.js'
 export const getAll = async (req: Request, res: Response) => {
 	try {
 		// const destinations = await DestinationModel.find().exec()
-		const destinations = await DestinationModel.find().limit(3).exec()
+		const destinations = await DestinationModel.find().limit(4).exec()
 		res.json(destinations)
 	} catch (err) {
 		console.log(err)

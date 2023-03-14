@@ -2,7 +2,6 @@ import React from 'react'
 import { Preview } from '../components/elements/Preview'
 import { Notifications } from '../components/elements/Notifications'
 import { Destinations } from '../components/elements/Destinations'
-import { Location } from '../components/elements/Location'
 
 export const BrowsePage: React.FC = () => {
 	return (
@@ -11,9 +10,8 @@ export const BrowsePage: React.FC = () => {
 				<Preview />
 				<Notifications />
 			</div>
-			<div className='flex space-x-10'>
+			<div>
 				<Destinations />
-				<Location />
 			</div>
 		</div>
 	)
