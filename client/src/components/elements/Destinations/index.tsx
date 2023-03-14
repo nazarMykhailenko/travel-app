@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { Categories } from './Categories'
 import { DestinationItem } from './DestinationItem'
 import { getDestinations } from '../../../redux/destinations/slice'
-import { DestinationLoadingStatus } from '../../../redux/destinations/types'
+import { Loading } from '../../../@types/global'
 import { Skeleton } from './Skeleton'
 
 export const Destinations: React.FC = () => {
@@ -20,7 +20,7 @@ export const Destinations: React.FC = () => {
 		<div>
 			<Categories />
 			<div className='flex space-x-4'>
-				{status === DestinationLoadingStatus.LOADING
+				{status === Loading.LOADING
 					? Array(4)
 							.fill(null)
 							.map(() => <Skeleton />)

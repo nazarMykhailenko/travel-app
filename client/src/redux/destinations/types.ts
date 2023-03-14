@@ -1,8 +1,4 @@
-export enum DestinationLoadingStatus {
-	LOADING = 'loading',
-	SUCCESS = 'success',
-	ERROR = 'error',
-}
+import { Loading } from '../../@types/global'
 
 interface ILocation {
 	city: string
@@ -37,6 +33,6 @@ export interface IDestination {
 }
 
 export interface IDestinationState {
-	status: DestinationLoadingStatus
+	status: Loading
 	destinations: Array<IDestination>
 }

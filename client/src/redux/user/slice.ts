@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios, { AxiosHeaders } from 'axios'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { IUser, IUserState, UserLoadingStatus, ILogInDetails } from './types'
+import { Loading } from '../../@types/global'
+import { IUser, IUserState, ILogInDetails } from './types'
 
 export const registerUser = createAsyncThunk(
 	'user/registerUser',
@@ -40,7 +41,7 @@ export const logInUser = createAsyncThunk(
 )
 
 const initialState: IUserState = {
-	status: UserLoadingStatus.LOADING,
+	status: Loading.LOADING,
 	user: null,
 }
 
@@ -55,35 +56,35 @@ export const userSlice = createSlice({
 	extraReducers: (builder) => {
 		// register
 		builder.addCase(registerUser.pending, (state, action) => {
-			state.status = UserLoadingStatus.LOADING
+			state.status = Loading.LOADING
 			state.user = null
 		})
 		builder.addCase(
 			registerUser.fulfilled,
 			(state, action: PayloadAction<IUser>) => {
-				state.status = UserLoadingStatus.SUCCESS
+				state.status = Loading.SUCCESS
 				state.user = action.payload
 			}
 		)
 		builder.addCase(registerUser.rejected, (state, action) => {
-			state.status = UserLoadingStatus.ERROR
+			state.status = Loading.ERROR
 			state.user = null
 		})
 
 		// login
 		builder.addCase(logInUser.pending, (state, action) => {
-			state.status = UserLoadingStatus.LOADING
+			state.status = Loading.LOADING
 			state.user = null
 		})
 		builder.addCase(
 			logInUser.fulfilled,
 			(state, action: PayloadAction<IUser>) => {
-				state.status = UserLoadingStatus.SUCCESS
+				state.status = Loading.SUCCESS
 				state.user = action.payload
 			}
 		)
 		builder.addCase(logInUser.rejected, (state, action) => {
-			state.status = UserLoadingStatus.ERROR
+			state.status = Loading.ERROR
 			state.user = null
 		})
 	},

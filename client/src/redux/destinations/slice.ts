@@ -1,11 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios, { AxiosHeaders } from 'axios'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import {
-	IDestinationState,
-	DestinationLoadingStatus,
-	IDestination,
-} from './types'
+import { Loading } from '../../@types/global'
+import { IDestinationState, IDestination } from './types'
 
 export const getDestinations = createAsyncThunk(
 	'destinations/getDestinations',
@@ -26,7 +23,7 @@ export const getDestinations = createAsyncThunk(
 )
 
 const initialState: IDestinationState = {
-	status: DestinationLoadingStatus.LOADING,
+	status: Loading.LOADING,
 	destinations: [],
 }
 
@@ -36,18 +33,18 @@ export const destinationSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(getDestinations.pending, (state, action) => {
-			state.status = DestinationLoadingStatus.LOADING
+			state.status = Loading.LOADING
 			state.destinations = []
 		})
 		builder.addCase(
 			getDestinations.fulfilled,
 			(state, action: PayloadAction<IDestination[]>) => {
-				state.status = DestinationLoadingStatus.SUCCESS
+				state.status = Loading.SUCCESS
 				state.destinations = action.payload
 			}
 		)
 		builder.addCase(getDestinations.rejected, (state, action) => {
-			state.status = DestinationLoadingStatus.ERROR
+			state.status = Loading.ERROR
 			state.destinations = []
 		})
 	},
