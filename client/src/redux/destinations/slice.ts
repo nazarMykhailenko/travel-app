@@ -12,9 +12,12 @@ export const getDestinations = createAsyncThunk(
 	async () => {
 		try {
 			const headers = new AxiosHeaders({ 'Content-Type': 'application/json' })
-			const response = await axios.get('http://localhost:4444/destinations', {
-				headers,
-			})
+			const response = await axios.get<IDestination[]>(
+				'http://localhost:4444/destinations',
+				{
+					headers,
+				}
+			)
 			return response.data
 		} catch (err) {
 			throw new Error(`Failed to get destinations: ${err}`)
