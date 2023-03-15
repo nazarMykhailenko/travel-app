@@ -88,3 +88,34 @@ export const login = async (req: Request, res: Response) => {
 		})
 	}
 }
+
+export const update = async (req: Request, res: Response) => {
+	const userId = req.params.id
+	const { name, email, avatar } = req.body
+
+	try {
+		const user = await UserModel.findById(userId)
+
+		if (!user) {
+			return res.status(404).json({ message: 'User not found' })
+		}
+
+		if (name) {
+			user.fullName = name
+		}
+
+		if (email) {
+			user.email = email
+		}
+
+		if (avatar) {
+			user.avatar = avatar
+		}
+
+		await user.save()
+
+		res.json({ message: 'User updated successfully', user })
+	} catch (error) {
+		res.status(500).json({ message: 'Server error', error })
+	}
+}

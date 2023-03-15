@@ -7,6 +7,7 @@ import { BrowsePage } from './pages/BrowsePage'
 import { LogInPage } from './pages/LoginPage'
 import { SavedPlace } from './pages/SavedPlace'
 import './App.scss'
+import { SettingsPage } from './pages/SettingsPage'
 
 const App: React.FC = () => {
 	return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
 					</Route>
 					<Route path='/sign-up' element={<RegistrationPage />} />
 					<Route path='/log-in' element={<LogInPage />} />
+					<Route path='/settings' element={<SettingsPage />} />
 				</Route>
 			</Routes>
 		</div>
