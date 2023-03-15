@@ -7,7 +7,7 @@ interface IDestinationItem extends IDestination {}
 export const DestinationItem: React.FC<IDestinationItem> = (props) => {
 	const { location, info, tickets, hotelsAvailable, rating, isSaved } = props
 	return (
-		<div className='relative rounded-xl overflow-hidden w-1/4 cursor-pointer'>
+		<div className='relative rounded-xl overflow-hidden cursor-pointer'>
 			<img
 				src={info.img}
 				alt={`${location.city} picture`}

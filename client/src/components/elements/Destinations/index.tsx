@@ -1,4 +1,6 @@
 import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { Categories } from './Categories'
 import { DestinationItem } from './DestinationItem'
@@ -10,8 +12,6 @@ export const Destinations: React.FC = () => {
 	const dispatch = useAppDispatch()
 	const { status, destinations } = useAppSelector((state) => state.destinations)
 
-	const preview = destinations.slice(0, 4)
-
 	React.useEffect(() => {
 		dispatch(getDestinations())
 	}, [])
@@ -19,13 +19,29 @@ export const Destinations: React.FC = () => {
 	return (
 		<div>
 			<Categories />
-			<div className='flex space-x-4'>
-				{status === Loading.LOADING
-					? Array(4)
+			{/* {status === Loading.LOADING ? (
+				Array(4)
+					.fill(null)
+					.map(() => <Skeleton />)
+			) : ( */}
+			<Swiper spaceBetween={20} slidesPerView={4}>
+				{status === Loading.LOADING ? (
+					<div className='flex space-x-4'>
+						{Array(4)
 							.fill(null)
-							.map(() => <Skeleton />)
-					: preview.map((item) => <DestinationItem key={item._id} {...item} />)}
-			</div>
+							.map(() => (
+								<Skeleton />
+							))}
+					</div>
+				) : (
+					destinations.map((item) => (
+						<SwiperSlide key={item._id}>
+							<DestinationItem {...item} />
+						</SwiperSlide>
+					))
+				)}
+			</Swiper>
+			{/* )} */}
 		</div>
 	)
 }
