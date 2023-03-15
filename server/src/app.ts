@@ -2,9 +2,13 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import { loginValidation, registerValidation } from './validation.js'
+import {
+	loginValidation,
+	registerValidation,
+	updateValidation,
+} from './validation.js'
 import handleValidationErrors from './utils/handleValidationErrors.js'
-import { login, register } from './controllers/UserController.js'
+import { login, register, update } from './controllers/UserController.js'
 import { getAll, getOne } from './controllers/DestinationsController.js'
 
 const url =
@@ -26,6 +30,7 @@ app.get('/', (_, res) => {
 
 app.post('/auth/login', loginValidation, handleValidationErrors, login)
 app.post('/auth/register', registerValidation, handleValidationErrors, register)
+app.patch('auth/:id', updateValidation, handleValidationErrors, update)
 
 app.get('/destinations', getAll)
 app.get('/destinations/:id', getOne)

@@ -2,6 +2,7 @@ export interface IUser {
 	fullName: string
 	email: string
 	passwordHash: string
+	avatar?: string
 }
 
 export interface ILocation {

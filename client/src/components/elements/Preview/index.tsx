@@ -32,8 +32,6 @@ export const Preview: React.FC = () => {
 		}
 	}
 
-	console.log(previewElement)
-
 	React.useEffect(() => {
 		fetchDestinationById(currentId)
 	}, [currentId])
