@@ -19,11 +19,6 @@ export const Destinations: React.FC = () => {
 	return (
 		<div>
 			<Categories />
-			{/* {status === Loading.LOADING ? (
-				Array(4)
-					.fill(null)
-					.map(() => <Skeleton />)
-			) : ( */}
 			<Swiper spaceBetween={20} slidesPerView={4}>
 				{status === Loading.LOADING ? (
 					<div className='flex space-x-4'>
@@ -41,7 +36,6 @@ export const Destinations: React.FC = () => {
 					))
 				)}
 			</Swiper>
-			{/* )} */}
 		</div>
 	)
 }
