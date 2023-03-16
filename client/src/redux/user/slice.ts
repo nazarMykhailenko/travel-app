@@ -75,6 +75,11 @@ export const userSlice = createSlice({
 		updateUser(state, action: PayloadAction<IUser>) {
 			state.user = action.payload
 		},
+		setAvatar(state, action: PayloadAction<string>) {
+			if (state.user) {
+				state.user.avatar = action.payload
+			}
+		},
 	},
 	extraReducers: (builder) => {
 		// register
@@ -131,6 +136,6 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { logOut, updateUser } = userSlice.actions
+export const { logOut, updateUser, setAvatar } = userSlice.actions
 
 export default userSlice.reducer

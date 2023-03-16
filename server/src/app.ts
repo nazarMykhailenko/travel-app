@@ -1,5 +1,7 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import cors from 'cors'
+import fs from 'fs'
+import multer, { StorageEngine } from 'multer'
 import mongoose from 'mongoose'
 
 import {
@@ -19,10 +21,25 @@ mongoose
 	.then(() => console.log('DB ok'))
 	.catch((err) => console.log('DB error', err))
 
+const storage: StorageEngine = multer.diskStorage({
+	destination: (_, __, cb) => {
+		if (!fs.existsSync('uploads')) {
+			fs.mkdirSync('uploads')
+		}
+		cb(null, 'uploads')
+	},
+	filename: (_, file, cb) => {
+		cb(null, file.originalname)
+	},
+})
+
+const upload = multer({ storage })
+
 const app = express()
 
 app.use(express.json())
 app.use(cors())
+app.use('/uploads', express.static('uploads'))
 
 app.get('/', (_, res) => {
 	res.send('OK')
@@ -31,6 +48,16 @@ app.get('/', (_, res) => {
 app.post('/auth/login', loginValidation, handleValidationErrors, login)
 app.post('/auth/register', registerValidation, handleValidationErrors, register)
 app.patch('/auth/:id', updateValidation, handleValidationErrors, update)
+
+app.post('/upload', upload.single('image'), (req: Request, res: Response) => {
+	if (!req.file) {
+		return res.status(400).json({ message: 'No file uploaded' })
+	}
+
+	res.json({
+		url: `/uploads/${req.file.originalname}`,
+	})
+})
 
 app.get('/destinations', getAll)
 app.get('/destinations/:id', getOne)

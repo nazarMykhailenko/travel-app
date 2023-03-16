@@ -11,6 +11,7 @@ export interface IUser {
 	fullName: string
 	email: string
 	password: string
+	avatar?: string
 }
 
 export interface IUserState {
