@@ -1,6 +1,9 @@
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { AiOutlineEdit } from 'react-icons/ai'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { updateUser } from '../../redux/user/slice'
+import { IUser } from '../../redux/user/types'
 import { toTitleCase } from '../../utils/toTitleCase'
 import { ISettingsPageInput } from './types'
 
@@ -15,11 +18,17 @@ export const EditItem: React.FC<IEditItemProps> = ({
 	value,
 	register,
 }) => {
+	const dispatch = useAppDispatch()
+	const { user } = useAppSelector((state) => state.user)
 	const [isEditable, setEditable] = React.useState<boolean>(false)
 	const [inputValue, setInputValue] = React.useState<string>(value)
 
-	const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const changeInputValue = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		parameter: string
+	) => {
 		setInputValue(e.target.value)
+		dispatch(updateUser({ ...user, [parameter]: e.target.value } as IUser))
 	}
 
 	return (
@@ -34,7 +43,7 @@ export const EditItem: React.FC<IEditItemProps> = ({
 							})}
 							className='w-[12rem] border-b outline-none'
 							value={inputValue}
-							onChange={changeInputValue}
+							onChange={(e) => changeInputValue(e, parameter)}
 						/>
 					) : (
 						<div className='w-[12rem]'>{value}</div>

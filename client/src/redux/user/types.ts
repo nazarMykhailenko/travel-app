@@ -1,4 +1,5 @@
 import { Loading } from '../../@types/global'
+import { ObjectId } from 'mongodb'
 
 export interface ILogInDetails {
 	email: string
@@ -6,6 +7,7 @@ export interface ILogInDetails {
 }
 
 export interface IUser {
+	_id: ObjectId
 	fullName: string
 	email: string
 	password: string

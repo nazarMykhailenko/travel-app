@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useAppSelector } from '../../redux/store'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { fetchUpdatedUser } from '../../redux/user/slice'
 import { EditItem } from './EditItem'
 import { ISettingsPageInput } from './types'
 
@@ -10,9 +11,12 @@ export const SettingsPage: React.FC = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<ISettingsPageInput>({ mode: 'onChange' })
+	const dispatch = useAppDispatch()
 	const { user } = useAppSelector((state) => state.user)
 
-	const onSubmit: SubmitHandler<ISettingsPageInput> = (data) => {}
+	const onSubmit: SubmitHandler<ISettingsPageInput> = () => {
+		user && dispatch(fetchUpdatedUser(user))
+	}
 
 	return (
 		<div className='flex items-center justify-center h-screen'>

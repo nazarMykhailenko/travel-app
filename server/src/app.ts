@@ -30,7 +30,7 @@ app.get('/', (_, res) => {
 
 app.post('/auth/login', loginValidation, handleValidationErrors, login)
 app.post('/auth/register', registerValidation, handleValidationErrors, register)
-app.patch('auth/:id', updateValidation, handleValidationErrors, update)
+app.patch('/auth/:id', updateValidation, handleValidationErrors, update)
 
 app.get('/destinations', getAll)
 app.get('/destinations/:id', getOne)
