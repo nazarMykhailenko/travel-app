@@ -32,7 +32,15 @@ export const Header: React.FC<{ text: string }> = ({ text }) => {
 					<div className='flex items-center space-x-4'>
 						<div>
 							<Link to='/settings'>
-								<AiOutlineUser className='text-3xl cursor-pointer' />
+								{user.avatar ? (
+									<img
+										className='w-10 h-10 rounded-full object-cover cursor-pointer'
+										src={`http://localhost:4444${user.avatar}`}
+										alt='user avatar'
+									/>
+								) : (
+									<AiOutlineUser className='text-3xl cursor-pointer' />
+								)}
 							</Link>
 						</div>
 						<div>
