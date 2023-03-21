@@ -37,3 +37,25 @@ export const getOne = async (req: Request, res: Response) => {
 		})
 	}
 }
+
+export const toggleSavedStatus = async (req: Request, res: Response) => {
+	try {
+		const destinationId = req.params.id
+		const currentSavedStatus = req.body.currentSavedStatus
+
+		console.log(currentSavedStatus + ' saved status')
+
+		const destination = await DestinationModel.findByIdAndUpdate(
+			destinationId,
+			{ isSaved: !currentSavedStatus },
+			{ new: true }
+		)
+
+		res.status(200).json(destination)
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Failed to update saved status',
+		})
+	}
+}

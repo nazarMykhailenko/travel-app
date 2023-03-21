@@ -1,5 +1,10 @@
 import { Loading } from '../../@types/global'
 
+export interface updateSavedStatusDetails {
+	id: string
+	currentSavedStatus: boolean
+}
+
 interface ILocation {
 	city: string
 	country: string
@@ -16,7 +21,7 @@ interface ITickets {
 	price: number
 }
 
-interface IHotel {
+export interface IHotel {
 	name: string
 	img: string
 	city: string
@@ -35,4 +40,5 @@ export interface IDestination {
 export interface IDestinationState {
 	status: Loading
 	destinations: Array<IDestination>
+	savedList: Array<IDestination>
 }

@@ -1,13 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { MdStarRate, MdOutlineLocationOn } from 'react-icons/md'
 import { IDestination } from '../../../redux/destinations/types'
 
 interface IDestinationItem extends IDestination {}
 
 export const DestinationItem: React.FC<IDestinationItem> = (props) => {
-	const { location, info, tickets, hotelsAvailable, rating, isSaved } = props
+	const { _id, location, info, rating } = props
 	return (
-		<div className='relative rounded-xl overflow-hidden cursor-pointer'>
+		<Link
+			to={`/destination/${_id}`}
+			className='relative rounded-xl overflow-hidden cursor-pointer block'
+		>
 			<img
 				src={info.img}
 				alt={`${location.city} picture`}
@@ -24,6 +28,6 @@ export const DestinationItem: React.FC<IDestinationItem> = (props) => {
 					<span>{location.country}</span>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }

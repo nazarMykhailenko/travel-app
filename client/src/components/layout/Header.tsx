@@ -11,8 +11,6 @@ export const Header: React.FC<{ text: string }> = ({ text }) => {
 	const { pathname } = useLocation()
 	const { user } = useAppSelector((state) => state.user)
 
-	console.log(pathname)
-
 	const showRegistrationPage = (): void => {
 		navigate(`/sign-up`)
 	}
