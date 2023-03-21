@@ -11,7 +11,11 @@ import {
 } from './validation.js'
 import handleValidationErrors from './utils/handleValidationErrors.js'
 import { login, register, update } from './controllers/UserController.js'
-import { getAll, getOne } from './controllers/DestinationsController.js'
+import {
+	getAll,
+	getOne,
+	toggleSavedStatus,
+} from './controllers/DestinationsController.js'
 
 const url =
 	'mongodb+srv://nazarprogramming:2136nazarm@cluster0.kmokheh.mongodb.net/?retryWrites=true&w=majority'
@@ -61,6 +65,7 @@ app.post('/upload', upload.single('image'), (req: Request, res: Response) => {
 
 app.get('/destinations', getAll)
 app.get('/destinations/:id', getOne)
+app.patch('/destinations/:id', toggleSavedStatus)
 
 const server = app.listen(4444, () => {
 	console.log('Server OK')
