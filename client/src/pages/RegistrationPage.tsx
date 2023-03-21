@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../redux/store'
 import { registerUser } from '../redux/user/slice'
+import { IUser } from '../redux/user/types'
 
 interface IRegistrationFormInput {
 	fullName: string
@@ -20,7 +21,7 @@ export const RegistrationPage: React.FC = () => {
 	} = useForm<IRegistrationFormInput>({ mode: 'onChange' })
 
 	const onSubmit: SubmitHandler<IRegistrationFormInput> = (data) => {
-		dispatch(registerUser(data))
+		dispatch(registerUser(data as IUser))
 		navigate(`/`)
 	}
 
