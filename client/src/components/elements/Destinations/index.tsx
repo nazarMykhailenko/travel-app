@@ -11,6 +11,7 @@ import { Skeleton } from './Skeleton'
 export const Destinations: React.FC = () => {
 	const dispatch = useAppDispatch()
 	const { status, destinations } = useAppSelector((state) => state.destinations)
+	const [selectValue, setSelectValue] = React.useState('City')
 
 	React.useEffect(() => {
 		dispatch(getDestinations())
@@ -18,7 +19,7 @@ export const Destinations: React.FC = () => {
 
 	return (
 		<div>
-			<Categories />
+			<Categories value={selectValue} setValue={setSelectValue} />
 			<Swiper spaceBetween={20} slidesPerView={4}>
 				{status === Loading.LOADING ? (
 					<div className='flex space-x-4'>
@@ -29,11 +30,16 @@ export const Destinations: React.FC = () => {
 							))}
 					</div>
 				) : (
-					destinations.map((item) => (
-						<SwiperSlide key={item._id}>
-							<DestinationItem {...item} />
-						</SwiperSlide>
-					))
+					destinations
+						.filter((item) => {
+							if (selectValue === 'City') return true
+							if (selectValue === item.location.city) return true
+						})
+						.map((item) => (
+							<SwiperSlide key={item._id}>
+								<DestinationItem {...item} />
+							</SwiperSlide>
+						))
 				)}
 			</Swiper>
 		</div>
