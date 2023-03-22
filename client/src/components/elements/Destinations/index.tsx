@@ -1,15 +1,17 @@
 import React from 'react'
+import { SearchContext } from '../../../App'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { Categories } from './Categories'
 import { DestinationItem } from './DestinationItem'
+import { Skeleton } from './Skeleton'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { getDestinations } from '../../../redux/destinations/slice'
 import { Loading } from '../../../@types/global'
-import { Skeleton } from './Skeleton'
+import 'swiper/css'
 
 export const Destinations: React.FC = () => {
 	const dispatch = useAppDispatch()
+	const { searchValue } = React.useContext(SearchContext)
 	const { status, destinations } = useAppSelector((state) => state.destinations)
 	const [selectValue, setSelectValue] = React.useState('City')
 
@@ -32,7 +34,19 @@ export const Destinations: React.FC = () => {
 				) : (
 					destinations
 						.filter((item) => {
-							if (selectValue === 'City') return true
+							if (selectValue === 'City' && searchValue) {
+								return (
+									item.location.city.includes(searchValue) ||
+									item.location.country.includes(searchValue)
+								)
+							}
+
+							return true
+						})
+						.filter((item) => {
+							if (selectValue === 'City') {
+								return true
+							}
 							if (selectValue === item.location.city) return true
 						})
 						.map((item) => (

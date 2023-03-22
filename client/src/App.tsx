@@ -10,21 +10,35 @@ import { SettingsPage } from './pages/SettingsPage'
 import { DestinationPage } from './pages/DestinationPage'
 import './App.scss'
 
+interface SearchContextType {
+	searchValue: string | undefined
+	setSearchValue: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+export const SearchContext = React.createContext<SearchContextType>({
+	searchValue: '',
+	setSearchValue: () => {},
+})
+
 const App: React.FC = () => {
+	const [searchValue, setSearchValue] = React.useState<string>()
+
 	return (
 		<div className='wrapper'>
-			<Routes>
-				<Route path='/' element={<MainLayout />}>
-					<Route path='/' element={<HomePage />}>
-						<Route path='/' element={<BrowsePage />} />
-						<Route path='/saved-place' element={<SavedPlacePage />} />
-						<Route path='/destination/:id' element={<DestinationPage />} />
+			<SearchContext.Provider value={{ searchValue, setSearchValue }}>
+				<Routes>
+					<Route path='/' element={<MainLayout />}>
+						<Route path='/' element={<HomePage />}>
+							<Route path='/' element={<BrowsePage />} />
+							<Route path='/saved-place' element={<SavedPlacePage />} />
+							<Route path='/destination/:id' element={<DestinationPage />} />
+						</Route>
+						<Route path='/sign-up' element={<RegistrationPage />} />
+						<Route path='/log-in' element={<LogInPage />} />
+						<Route path='/settings' element={<SettingsPage />} />
 					</Route>
-					<Route path='/sign-up' element={<RegistrationPage />} />
-					<Route path='/log-in' element={<LogInPage />} />
-					<Route path='/settings' element={<SettingsPage />} />
-				</Route>
-			</Routes>
+				</Routes>
+			</SearchContext.Provider>
 		</div>
 	)
 }
