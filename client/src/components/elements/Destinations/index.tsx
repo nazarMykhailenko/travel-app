@@ -36,8 +36,12 @@ export const Destinations: React.FC = () => {
 						.filter((item) => {
 							if (selectValue === 'City' && searchValue) {
 								return (
-									item.location.city.includes(searchValue) ||
-									item.location.country.includes(searchValue)
+									item.location.city
+										.toLocaleLowerCase()
+										.includes(searchValue.toLocaleLowerCase()) ||
+									item.location.country
+										.toLocaleLowerCase()
+										.includes(searchValue.toLocaleLowerCase())
 								)
 							}
 
