@@ -1,8 +1,9 @@
 import React from 'react'
+import { SearchContext } from '../../App'
 import { FaSearch, FaTimes } from 'react-icons/fa'
 
 export const SearchBar: React.FC = () => {
-	const [value, setValue] = React.useState(``)
+	const { searchValue, setSearchValue } = React.useContext(SearchContext)
 	const inputRef = React.useRef<HTMLInputElement>(null)
 
 	const focusOnInput = () => {
@@ -11,10 +12,10 @@ export const SearchBar: React.FC = () => {
 		}
 	}
 	const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(event.target.value)
+		setSearchValue(event.target.value)
 	}
 	const clearValue = () => {
-		setValue(``)
+		setSearchValue(``)
 		focusOnInput()
 	}
 
@@ -25,7 +26,7 @@ export const SearchBar: React.FC = () => {
 			</div>
 			<input
 				ref={inputRef}
-				value={value}
+				value={searchValue}
 				onChange={changeValue}
 				placeholder='Search destination'
 				type='text'
@@ -33,7 +34,7 @@ export const SearchBar: React.FC = () => {
 			/>
 			<div
 				className={`cursor-pointer transition-all ${
-					value ? 'opacity-100' : 'opacity-0'
+					searchValue ? 'opacity-100' : 'opacity-0'
 				}`}
 				onClick={clearValue}
 			>
