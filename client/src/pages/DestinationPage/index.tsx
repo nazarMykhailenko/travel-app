@@ -79,7 +79,7 @@ export const DestinationPage: React.FC = () => {
 					<h2 className='text-2xl font-bold text-gray-900 mb-2'>Description</h2>
 					<p className='text-gray-500 mb-6'> {element.info.desc} </p>
 
-					<Tickets />
+					<Tickets destination={element} />
 
 					<Hotels hotels={element.hotelsAvailable} />
 				</div>

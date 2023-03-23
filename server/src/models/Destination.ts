@@ -1,5 +1,5 @@
 import mongoose, { Schema, Model } from 'mongoose'
-import { IDestination, ILocation, IInfo, ITickets } from './types.js'
+import { IDestination, ILocation, IInfo } from './types.js'
 
 const LocationSchema = new Schema<ILocation>({
 	city: {
@@ -27,17 +27,6 @@ const InfoSchema = new Schema<IInfo>({
 	},
 })
 
-const TicketsSchema = new Schema<ITickets>({
-	time: {
-		type: Date,
-		required: true,
-	},
-	price: {
-		type: Number,
-		required: true,
-	},
-})
-
 const DestinationSchema = new Schema<IDestination>(
 	{
 		location: {
@@ -49,7 +38,7 @@ const DestinationSchema = new Schema<IDestination>(
 			required: true,
 		},
 		tickets: {
-			type: TicketsSchema,
+			type: [{ time: Date, price: Number }],
 			required: true,
 		},
 		hotelsAvailable: {
