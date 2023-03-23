@@ -10,6 +10,7 @@ import { SettingsPage } from './pages/SettingsPage'
 import { DestinationPage } from './pages/DestinationPage'
 import { LocationsPage } from './pages/LocationsPage'
 import './App.scss'
+import { PhotoSpotPage } from './pages/PhotoSpotPage'
 
 interface SearchContextType {
 	searchValue: string | undefined
@@ -34,6 +35,7 @@ const App: React.FC = () => {
 							<Route path='/saved-place' element={<SavedPlacePage />} />
 							<Route path='/destination/:id' element={<DestinationPage />} />
 							<Route path='/locations' element={<LocationsPage />} />
+							<Route path='/photo-spot' element={<PhotoSpotPage />} />
 						</Route>
 						<Route path='/sign-up' element={<RegistrationPage />} />
 						<Route path='/log-in' element={<LogInPage />} />
