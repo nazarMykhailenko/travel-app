@@ -16,7 +16,7 @@ export interface IInfo {
 	img: string
 }
 
-export interface ITickets {
+export interface ITicket {
 	time: Date
 	price: number
 }
@@ -30,7 +30,7 @@ export interface IHotel {
 export interface IDestination {
 	location: ILocation
 	info: IInfo
-	tickets: ITickets
+	tickets: Array<ITicket>
 	hotelsAvailable: Array<IHotel>
 	rating: string
 	isSaved: boolean
