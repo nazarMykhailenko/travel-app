@@ -135,16 +135,6 @@ export const Navigation: React.FC = () => {
 						</li>
 					</ul>
 				</div>
-				<div className='flex flex-col items-center bg-[#EDF7FB] p-4 rounded-2xl'>
-					<p className='text-center font-bold text-sm mb-4'>
-						Upgrade the<span className='text-[#EF943D]'> app </span>to
-						<span className='text-[#EF943D]'> remove </span>
-						ads
-					</p>
-					<Button otherStyles='w-full text-white font-bold text-sm'>
-						Upgrade
-					</Button>
-				</div>
 			</div>
 		</div>
 	)

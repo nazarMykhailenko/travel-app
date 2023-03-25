@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { MdOutlineSlowMotionVideo } from 'react-icons/md'
 import { Button } from '../../common/Button'
 import { Skeleton } from './Skeleton'
 import { fetchDestinationById } from '../../../utils/fetchDestinationById'
 import { IDestination } from '../../../redux/destinations/types'
+import { useNavigate } from 'react-router'
 
 export const Preview: React.FC = () => {
+	const navigate = useNavigate()
 	const [element, setElement] = React.useState<IDestination | undefined>(
 		undefined
 	)
@@ -18,27 +18,25 @@ export const Preview: React.FC = () => {
 		fetchDestinationById(currentId, setLoading, setElement)
 	}, [currentId])
 
-	if (loading) {
+	if (loading || !element) {
 		return <Skeleton />
 	}
 
 	return (
-		<div className='w-3/4 rounded-lg overflow-hidden relative'>
+		<div className='w-3/4 mx-auto pb-20 rounded-lg overflow-hidden relative'>
 			<div className='absolute z-10 w-full h-full bg-gradient-to-tr from-black to-transparent'></div>
 			<img
 				className='absolute w-full h-auto object-cover object-bottom'
-				src={element?.info.img}
+				src={element.info.img}
 				alt='preview picture'
 			/>
 			<div className='relative z-20 p-8 w-full h-full text-[#F9F6F8]'>
-				<h2 className='text-2xl font-bold mb-4'>{element?.location.city}</h2>
-				<p className='font-light mb-4'>{element?.info.sumUp}</p>
+				<h2 className='text-2xl font-bold mb-4'>{element.location.city}</h2>
+				<p className='font-light mb-4'>{element.info.sumUp}</p>
 				<div className='flex items-center space-x-4'>
-					<Button dark>Book ticket</Button>
-					<Link className='flex items-center space-x-1' to='play/nayhavn'>
-						<MdOutlineSlowMotionVideo />
-						<span>Play Video</span>
-					</Link>
+					<Button onClick={() => navigate(`/but-ticket/${element._id}/0`)} dark>
+						Book ticket
+					</Button>
 				</div>
 			</div>
 		</div>

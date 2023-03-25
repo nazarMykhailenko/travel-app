@@ -8,7 +8,7 @@ export const BrowsePage: React.FC = () => {
 		<div className='px-10 pb-10 w-full flex flex-col'>
 			<div className='flex mb-10 space-x-10'>
 				<Preview />
-				<Notifications />
+				{/* <Notifications /> */}
 			</div>
 			<div>
 				<Destinations />

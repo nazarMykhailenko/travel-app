@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { Button } from '../../components/common/Button'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { fetchUpdatedUser, setAvatar } from '../../redux/user/slice'
@@ -78,12 +79,7 @@ export const SettingsPage: React.FC = () => {
 					<div>Loading...</div>
 				)}
 
-				<button
-					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-					type='submit'
-				>
-					Save Changes
-				</button>
+				<Button otherStyles='bg-blue-500'>Save Changes</Button>
 			</form>
 		</div>
 	)

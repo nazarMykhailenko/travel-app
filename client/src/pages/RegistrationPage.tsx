@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '../components/common/Button'
 import { useAppDispatch } from '../redux/store'
 import { registerUser } from '../redux/user/slice'
 import { IUser } from '../redux/user/types'
@@ -99,22 +101,17 @@ export const RegistrationPage: React.FC = () => {
 				</div>
 
 				<div className='flex items-center justify-between'>
-					<button
-						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-						type='submit'
-					>
-						Sign up
-					</button>
+					<Button otherStyles='bg-blue-500 hover:bg-blue-700'>Sign up</Button>
 				</div>
 
 				<div className='mt-4 text-center'>
 					<p className='mb-1'>Already have an account?</p>
-					<button
+					<Link
+						to='/log-in'
 						className='text-blue-500 underline focus:outline-none'
-						onClick={() => navigate('/log-in')}
 					>
 						Log in
-					</button>
+					</Link>
 				</div>
 			</form>
 		</div>

@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 import { Button } from '../../components/common/Button'
 import { IDestination } from '../../redux/destinations/types'
 
 interface ISavedItemProps extends IDestination {}
 
 export const SavedItem: React.FC<ISavedItemProps> = (props) => {
+	const navigate = useNavigate()
 	const { _id, info, location, rating } = props
 
 	return (
@@ -23,7 +25,9 @@ export const SavedItem: React.FC<ISavedItemProps> = (props) => {
 				</h2>
 				<p className='text-sm text-gray-600 mb-4'>{info.sumUp}</p>
 				<div className='flex items-center justify-between'>
-					<Button transparent>Book now</Button>
+					<Button onClick={() => navigate(`/but-ticket/${_id}/0`)} transparent>
+						Book now
+					</Button>
 					<span className='text-gray-900 text-xl'>{rating}</span>
 				</div>
 			</div>
