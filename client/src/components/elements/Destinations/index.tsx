@@ -27,8 +27,8 @@ export const Destinations: React.FC = () => {
 					<div className='flex space-x-4'>
 						{Array(4)
 							.fill(null)
-							.map(() => (
-								<Skeleton />
+							.map((_, index) => (
+								<Skeleton key={index} />
 							))}
 					</div>
 				) : (
